@@ -99,6 +99,15 @@ then
         cp ../package.xml src/package.xml
         printf $successMessage
     fi;
+
+    # Prompt the user to create a execute_anon.apex file
+    printf "\nWould you like to create an Execute Anonymous file? [y/n]: ";
+    read -r createExecuteAnon
+    if [ "$createExecuteAnon" = "y" ]
+    then
+        touch execute_anon.apex
+        printf $successMessage
+    fi;
 fi;
 
 # Prompt the user to delete the Force CLI log file created
