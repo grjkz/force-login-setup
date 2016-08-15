@@ -70,6 +70,24 @@ createAntBuildProperties() {
   echo -e $buildXmlFile > build.properties;
 }
 
+createForceFasterSaveCredentialsJson() {
+  # Create Ant build.properties file, org is set to src
+  loginUrl="https://$sfdcInstanceType.salesforce.com"
+
+  credentialsJson="{\n";
+  credentialsJson+='  "username":"'$sfdcUsername'",'"\n";
+  credentialsJson+='  "password":"'$sfdcPassword'",'"\n";
+  credentialsJson+='  "loginUrl":"'$loginUrl'",'"\n";
+  credentialsJson+='  "generated":{'"\n";
+  credentialsJson+='    "instanceUrl":"",'"\n";
+  credentialsJson+='    "accessToken":""'"\n";
+  credentialsJson+="   }\n";
+  credentialsJson+="}\n";
+
+  # # Write to file
+  echo -e $credentialsJson > credentials.json;
+}
+
 
 ##
 ## User prompts to create/delete files
@@ -80,6 +98,15 @@ read -r createLoginScript;
 if [ "$createLoginScript" = "y" ]
 then
   createLoginScript
+  printf $successMessage;
+fi;
+
+# prompt user to see if they want to generate Force Fast Save
+printf "\nWould you like to create a Force-Faster-Save credentials.json? [y/n]: ";
+read -r createForceFasterSaveCredentialsJson;
+if [ "$createForceFasterSaveCredentialsJson" = "y" ]
+then
+  createForceFasterSaveCredentialsJson
   printf $successMessage;
 fi;
 
