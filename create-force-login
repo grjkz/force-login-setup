@@ -9,6 +9,9 @@ successMessage="\x1b[32;1mSuccess...\x1b[0m\n"
 printf "\nEnter username: ";
 read -r sfdcUsername;
 
+# Lowercase username
+sfdcUsername="$(echo $sfdcUsername | tr '[A-Z]' '[a-z]')"
+
 # Prompt user for password
 printf "\nEnter password: ";
 read -r sfdcPassword;
