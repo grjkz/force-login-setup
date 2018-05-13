@@ -24,7 +24,7 @@ read -r sfdcInstanceType;
 ##
 ## Call Force CLI command to login and pipe response to force-login-log.txt
 ##
-force-original login -u=$sfdcUsername -p=$sfdcPassword -i=$sfdcInstanceType > force-login-log.txt;
+force login -u=$sfdcUsername -p=$sfdcPassword -i=$sfdcInstanceType > force-login-log.txt;
 
 
 ##
@@ -62,7 +62,7 @@ fi
 ##
 createLoginScript() {
   # Create a login script containing the Force CLI command active command
-  printf "#!/bin/bash\nforce-original login -u=$sfdcUsername -p=$sfdcPassword -i=$sfdcInstanceType\n"  > ./login;
+  printf "#!/bin/bash\nforce login -u=$sfdcUsername -p=$sfdcPassword -i=$sfdcInstanceType\n"  > ./login;
   chmod +x login;
 }
 
